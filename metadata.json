@@ -1,0 +1,6 @@
+{
+  "name": "krishi Guide",
+  "description": "Expert Agricultural AI Advisor tailored for Bangladeshi farmers and agri-tech applications, featuring yield optimization, crop disease detection, soil analysis, and localized farming advisory.",
+  "requestFramePermissions": ["camera", "geolocation", "microphone"],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}

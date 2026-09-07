@@ -1,0 +1,93 @@
+{
+  "entities": {
+    "Farmer": {
+      "title": "Farmer",
+      "description": "Registered or guest farmer profile with regional agricultural context",
+      "type": "object",
+      "properties": {
+        "id": { "type": "string" },
+        "name": { "type": "string" },
+        "phone": { "type": "string" },
+        "division": { "type": "string" },
+        "district": { "type": "string" },
+        "upazila": { "type": "string" },
+        "farmSizeBigha": { "type": "number" },
+        "primaryCrop": { "type": "string" },
+        "createdAt": { "type": "string", "format": "date-time" }
+      },
+      "required": ["id", "createdAt"]
+    },
+    "Diagnosis": {
+      "title": "Diagnosis",
+      "description": "Leaf disease diagnostic inference, computer vision confidence scores, and agronomic treatment prescriptions",
+      "type": "object",
+      "properties": {
+        "farmerId": { "type": "string" },
+        "cropName": { "type": "string" },
+        "cropScientific": { "type": "string" },
+        "diseaseName": { "type": "string" },
+        "diseaseScientific": { "type": "string" },
+        "severity": { "type": "string" },
+        "confidenceScore": { "type": "number" },
+        "symptomsObserved": { "type": "string" },
+        "cause": { "type": "string" },
+        "treatments": { "type": "string" },
+        "expertNote": { "type": "string" },
+        "imageUrl": { "type": "string" },
+        "modelProvider": { "type": "string" },
+        "createdAt": { "type": "string", "format": "date-time" }
+      },
+      "required": ["cropName", "diseaseName", "confidenceScore", "createdAt"]
+    },
+    "Advisory": {
+      "title": "Advisory",
+      "description": "Crop management, yield estimation, and N-P-K soil recommendations",
+      "type": "object",
+      "properties": {
+        "farmerId": { "type": "string" },
+        "cropName": { "type": "string" },
+        "landSize": { "type": "number" },
+        "landUnit": { "type": "string" },
+        "soilType": { "type": "string" },
+        "plantingDate": { "type": "string" },
+        "expectedYield": { "type": "number" },
+        "yieldUnit": { "type": "string" },
+        "potentialProfitBdt": { "type": "number" },
+        "recommendations": { "type": "string" },
+        "createdAt": { "type": "string", "format": "date-time" }
+      },
+      "required": ["cropName", "landSize", "createdAt"]
+    },
+    "ChatInquiry": {
+      "title": "ChatInquiry",
+      "description": "Krishi AI advisor question and answer logs",
+      "type": "object",
+      "properties": {
+        "farmerId": { "type": "string" },
+        "question": { "type": "string" },
+        "answer": { "type": "string" },
+        "detectedCrop": { "type": "string" },
+        "createdAt": { "type": "string", "format": "date-time" }
+      },
+      "required": ["question", "answer", "createdAt"]
+    }
+  },
+  "firestore": {
+    "/farmers/{farmerId}": {
+      "schema": "Farmer",
+      "description": "Farmer profile collection"
+    },
+    "/diagnoses/{diagnosisId}": {
+      "schema": "Diagnosis",
+      "description": "Leaf disease diagnosis collection"
+    },
+    "/advisories/{advisoryId}": {
+      "schema": "Advisory",
+      "description": "Crop yield and fertilizer recommendations"
+    },
+    "/chat_inquiries/{inquiryId}": {
+      "schema": "ChatInquiry",
+      "description": "AI agronomic consultations"
+    }
+  }
+}
